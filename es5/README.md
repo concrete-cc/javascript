@@ -86,41 +86,6 @@
     var item = {};
     ```
 
-  - Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61).
-
-    ```javascript
-    // bad
-    var superman = {
-      default: { clark: 'kent' },
-      private: true
-    };
-
-    // good
-    var superman = {
-      defaults: { clark: 'kent' },
-      hidden: true
-    };
-    ```
-
-  - Use readable synonyms in place of reserved words.
-
-    ```javascript
-    // bad
-    var superman = {
-      class: 'alien'
-    };
-
-    // bad
-    var superman = {
-      klass: 'alien'
-    };
-
-    // good
-    var superman = {
-      type: 'alien'
-    };
-    ```
-
 **[⬆ back to top](#table-of-contents)**
 
 ## Arrays
@@ -626,7 +591,7 @@
     if (test)
       return false;
 
-    // good
+    // bad
     if (test) return false;
 
     // good
@@ -634,7 +599,11 @@
       return false;
     }
 
-    // bad
+    // good
+    events: {
+      'click': function () { doCLick(3); }.bind(this)
+    }
+    
     function() { return false; }
 
     // good
@@ -764,22 +733,22 @@
 
 ## Whitespace
 
-  - Use soft tabs set to 2 spaces.
+  - Use tabs to indent
 
     ```javascript
-    // bad
-    function() {
-    ∙∙∙∙var name;
-    }
-
     // bad
     function() {
     ∙var name;
     }
 
-    // good
+    // bad
     function() {
     ∙∙var name;
+    }
+
+    // good
+    function() {
+    ∙∙∙∙var name;
     }
     ```
 
@@ -831,6 +800,11 @@
     function fight() {
       console.log('Swooosh!');
     }
+
+    // good
+    function () {
+      console.log('Wooosh!');
+    }
     ```
 
   - Set off operators with spaces.
@@ -839,32 +813,13 @@
     // bad
     var x=y+5;
 
+    // bad
+    var i;
+    for (i = 1; i < arr.length+1; i++) {
+    }
+
     // good
     var x = y + 5;
-    ```
-
-  - End files with a single newline character.
-
-    ```javascript
-    // bad
-    (function(global) {
-      // ...stuff...
-    })(this);
-    ```
-
-    ```javascript
-    // bad
-    (function(global) {
-      // ...stuff...
-    })(this);↵
-    ↵
-    ```
-
-    ```javascript
-    // good
-    (function(global) {
-      // ...stuff...
-    })(this);↵
     ```
 
   - Use indentation when making long method chains. Use a leading dot, which
@@ -885,10 +840,10 @@
     // good
     $('#items')
       .find('.selected')
-        .highlight()
-        .end()
+      .highlight()
+      .end()
       .find('.open')
-        .updateCount();
+      .updateCount();
 
     // bad
     var leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
@@ -898,13 +853,13 @@
 
     // good
     var leds = stage.selectAll('.led')
-        .data(data)
+      .data(data)
       .enter().append('svg:svg')
-        .classed('led', true)
-        .attr('width', (radius + margin) * 2)
+      .classed('led', true)
+      .attr('width', (radius + margin) * 2)
       .append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
+      .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+      .call(tron.led);
     ```
 
   - Leave a blank line after blocks and before the next statement
